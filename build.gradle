@@ -12,10 +12,9 @@ plugins {
     id 'nebula.lint' version '0.30.12'
 }
 
-//gradleLint.rules = ['all-dependency'] // add as many rules here as you'd like
 allprojects {
     apply plugin: 'nebula.lint'
-    gradleLint.rules = ['all-dependency'] // add as many rules here as you'd like
+    gradleLint.rules = ['all-dependency', 'unused-dependency', 'unused-exclude-by-dep'] // add as many rules here as you'd like
 }
 
 apply plugin: 'java'
@@ -37,6 +36,7 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 dependencies {
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
     // tag::jetty[]
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
@@ -50,5 +50,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+    gradleVersion = '2.1'
 }
